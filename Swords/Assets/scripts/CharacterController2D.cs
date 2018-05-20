@@ -9,14 +9,27 @@ public class CharacterController2D : MonoBehaviour {
     bool facingRight;
     public float speed;
     public float bootsTimes;
+    public WeaponSystem ws;
 
+    float weaponCooldown_1;
 	// Use this for initialization
 	void Start () {
         rg = gameObject.GetComponent<Rigidbody2D>();
 	}
 
     private void Update()
-    {              
+    {
+        weaponCooldown_1 -= 1;
+        if (Input.GetKey(KeyCode.Alpha1) && weaponCooldown_1 <= 0)
+        {
+            Debug.Log("button pressed 1");
+            if (ws != null)
+            {
+                Instantiate(ws.weapons[0].prefab, ws.weaponPositions[0].position, ws.weaponPositions[0].rotation);
+                weaponCooldown_1 = ws.weapons[0].coolDownSpeed;
+                Debug.Log("shoot 1");
+            }
+        }
     }
 
     // Update is called once per frame
