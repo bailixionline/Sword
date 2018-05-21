@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
+[System.Serializable]
 public class WeaponData
 { 
     public GameObject prefab;
